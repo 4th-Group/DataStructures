@@ -1,7 +1,7 @@
 #ifndef DATASTRUCT_LISTONARRAY_H
 #define DATASTRUCT_LISTONARRAY_H
 
-#endif //DATASTRUCT_LISTONARRAY_H
+
 class ListOnArr {
 private:
     T *mainArr_ = new T[0];
@@ -147,3 +147,5 @@ public:
         delete[] mainArr_;
     }
 };
+
+#endif //DATASTRUCT_LISTONARRAY_H
