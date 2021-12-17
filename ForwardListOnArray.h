@@ -51,8 +51,8 @@ public:
         if (where > size_) {
             throw std::range_error("You can not insert element on this position");
         }
-        T arr1[where];
-        T arr2[size_ - where + 1];
+        T arr1 = new T[where];
+        T arr2 = new T[size_ - where + 1];
         for (int i = 0; i < where; ++i) {
             arr1[i] = mainArr_[i];
         }
@@ -75,7 +75,8 @@ public:
             mainArr_[i] = arr2[j];
             ++j;
         }
-
+        delete[] arr1;
+        delete[] arr2;
     }
 
     void remove(int where){
@@ -84,8 +85,8 @@ public:
         } else if(where == size_){
             pop_back();
         }
-        T arr1[where - 1];
-        T arr2[size_ - where];
+        T arr1 = new T[where - 1];
+        T arr2 = new T[size_ - where];
         for (int i = 0; i < where - 1; ++i) {
             arr1[i] = mainArr_[i];
         }
@@ -107,13 +108,15 @@ public:
             mainArr_[i] = arr2[j];
             ++j;
         }
+        delete[] arr1;
+        delete[] arr2;
     }
 
     void pop_back() {
         if (size_ == 0){
             throw std::logic_error("You cannot pop when size is 0");
         }
-        T tempArr[--size_];
+        T tempArr = new T[--size_];
         for (int i = 0; i < size_; ++i) {
             tempArr[i] = mainArr_[i];
         }
@@ -122,10 +125,11 @@ public:
         for (int i = 0; i < size_; ++i) {
             mainArr_[i] = tempArr[i];
         }
+        delete[] tempArr;
     }
 
     void push_back(T &value) {
-        T tempArr[size_];
+        T tempArr = new T[size_];
         for (int i = 0; i < size_; ++i) {
             tempArr[i] = mainArr_[i];
         }
@@ -136,10 +140,11 @@ public:
         }
         mainArr_[size_] = value;
         ++size_;
+        delete[] tempArr;
     }
 
     void resize(int new_size) {
-        T tempArr[new_size];
+        T tempArr = new T[new_size];
         for (int i = 0; i < new_size; ++i) {
             tempArr[i] = mainArr_[i];
         }
@@ -149,6 +154,7 @@ public:
             mainArr_[i] = tempArr[i];
         }
         size_ = new_size;
+        delete[] tempArr;
     }
 
     T *operator[](int num) {

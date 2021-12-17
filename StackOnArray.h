@@ -87,7 +87,7 @@ public:
 
     void push(T value) {
         if (size != 0) {
-            T temp[size];
+            T temp = new T[size];
             for (int i = 0; i < size; ++i) {
                 temp[i] = stackBase[i];
             }
@@ -96,6 +96,7 @@ public:
             for (int i = 0; i < size - 1; ++i) {
                 stackBase[i] = temp[i];
             }
+            delete[] temp;
         } else {
             delete[] stackBase;
             stackBase = new T[++size];
@@ -111,11 +112,11 @@ public:
     }
 
     bool isEmpty() {
-        return size;
+        return !((bool)size);
     }
 
     void resize() {
-        T temp[size];
+        T temp = new T[size];
         for (int i = 0; i < size; ++i) {
             temp[i] = stackBase[i];
         }
@@ -124,6 +125,7 @@ public:
         for (int i = 0; i < size; ++i) {
             stackBase[i] = temp[i];
         }
+        delete[] temp;
     }
 
     ~StackOnArray() {
