@@ -3,4 +3,4 @@ project(DataStruct)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(DataStruct arrQueue.h main.cpp ForwardListOnArray.h DequeOnArray.h)
+add_executable(DataStruct arrQueue.h main.cpp ForwardListOnArray.h DequeOnArray.h testsDequeOnArray.h)

@@ -1,6 +1,9 @@
 #ifndef DATASTRUCT_DEQUEONARRAY_H
 #define DATASTRUCT_DEQUEONARRAY_H
 
+#include "stdexcept"
+#include "cassert"
+
 template <typename T>
 class DequeOnArr{
 private:
@@ -20,18 +23,28 @@ public:
     }
 
     T *back() {
-        return &mainArr_[0];
+        if (size_ == 0){
+            throw std::logic_error("size of the deque is 0");
+        }
+        return &mainArr_[size_ - 1];
     }
 
     bool empty() {
+        if (size_ == 0){
+            throw std::logic_error("size of the deque is 0");
+        }
         return !(bool) size_;
     }
 
     T *front() {
-        return &mainArr_[size_ - 1];
+        return &mainArr_[0];
     }
 
     void pop_back() {
+
+        if (size_ == 0){
+            throw std::logic_error("size of the deque is 0");
+        }
         T tempArr[--size_];
         for (int i = 0; i < size_; ++i) {
             tempArr[i] = mainArr_[i];
@@ -61,7 +74,7 @@ public:
         size_++;
         T arr[size_];
         for (int i = 1; i < size_; ++i) {
-            arr[i] = mainArr_[i];
+            arr[i] = mainArr_[i - 1];
         }
         arr[0] = val;
         delete[] mainArr_;
@@ -72,6 +85,9 @@ public:
     }
 
     void pop_front() {
+        if (size_ == 0){
+            throw std::logic_error("size of the deque is 0");
+        }
         size_--;
         T arr[size_];
         for (int i = 0; i < size_; ++i) {
