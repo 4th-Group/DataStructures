@@ -1,0 +1,8 @@
+//
+// Created by skalem on 17.12.21.
+//
+
+#ifndef DATASTRUCT_DEQUEONARRAY_H
+#define DATASTRUCT_DEQUEONARRAY_H
+
+#endif //DATASTRUCT_DEQUEONARRAY_H
