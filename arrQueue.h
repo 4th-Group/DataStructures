@@ -16,7 +16,7 @@ private:
             mainArr_ = new T[1];
             return;
         }
-        T newArr = new T[size_];
+        T* newArr = new T[size_];
         for (i = bigger; i < size_; ++i) {
             newArr[i] = mainArr_[i - bigger];
         }

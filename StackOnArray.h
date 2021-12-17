@@ -82,12 +82,13 @@ public:
             throw std::logic_error("size of the stack is 0");
         }
         --size;
+        resize();
         return &stackBase[size];
     }
 
     void push(T value) {
         if (size != 0) {
-            T temp = new T[size];
+            T* temp = new T[size];
             for (int i = 0; i < size; ++i) {
                 temp[i] = stackBase[i];
             }
@@ -102,6 +103,7 @@ public:
             stackBase = new T[++size];
         }
         stackBase[size - 1] = value;
+        resize();
     }
 
     void print(std::ostream &out) {
@@ -116,7 +118,7 @@ public:
     }
 
     void resize() {
-        T temp = new T[size];
+        T* temp = new T[size];
         for (int i = 0; i < size; ++i) {
             temp[i] = stackBase[i];
         }

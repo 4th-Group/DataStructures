@@ -45,7 +45,7 @@ public:
         if (size_ == 0){
             throw std::logic_error("size of the deque is 0");
         }
-        T tempArr = new T[--size_];
+        T* tempArr = new T[--size_];
         for (int i = 0; i < size_; ++i) {
             tempArr[i] = mainArr_[i];
         }
@@ -58,7 +58,7 @@ public:
     }
 
     void push_back(T &value) {
-        T tempArr = new T[size_];
+        T* tempArr = new T[size_];
         for (int i = 0; i < size_; ++i) {
             tempArr[i] = mainArr_[i];
         }
@@ -74,7 +74,7 @@ public:
 
     void push_front(T &val) {
         size_++;
-        T arr = new T[size_];
+        T* arr = new T[size_];
         for (int i = 1; i < size_; ++i) {
             arr[i] = mainArr_[i - 1];
         }
@@ -92,7 +92,7 @@ public:
             throw std::logic_error("size of the deque is 0");
         }
         size_--;
-        T arr = new T[size_];
+        T* arr = new T[size_];
         for (int i = 0; i < size_; ++i) {
             arr[i] = mainArr_[i + 1];
         }

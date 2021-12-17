@@ -51,8 +51,8 @@ public:
         if (where > size_) {
             throw std::range_error("You can not insert element on this position");
         }
-        T arr1 = new T[where];
-        T arr2 = new T[size_ - where + 1];
+        T* arr1 = new T[where];
+        T* arr2 = new T[size_ - where + 1];
         for (int i = 0; i < where; ++i) {
             arr1[i] = mainArr_[i];
         }
@@ -85,8 +85,8 @@ public:
         } else if(where == size_){
             pop_back();
         }
-        T arr1 = new T[where - 1];
-        T arr2 = new T[size_ - where];
+        T* arr1 = new T[where - 1];
+        T* arr2 = new T[size_ - where];
         for (int i = 0; i < where - 1; ++i) {
             arr1[i] = mainArr_[i];
         }
@@ -116,7 +116,7 @@ public:
         if (size_ == 0){
             throw std::logic_error("You cannot pop when size is 0");
         }
-        T tempArr = new T[--size_];
+        T* tempArr = new T[--size_];
         for (int i = 0; i < size_; ++i) {
             tempArr[i] = mainArr_[i];
         }
@@ -129,7 +129,7 @@ public:
     }
 
     void push_back(T &value) {
-        T tempArr = new T[size_];
+        T* tempArr = new T[size_];
         for (int i = 0; i < size_; ++i) {
             tempArr[i] = mainArr_[i];
         }
@@ -144,7 +144,7 @@ public:
     }
 
     void resize(int new_size) {
-        T tempArr = new T[new_size];
+        T* tempArr = new T[new_size];
         for (int i = 0; i < new_size; ++i) {
             tempArr[i] = mainArr_[i];
         }
