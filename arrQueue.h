@@ -1,6 +1,8 @@
 #ifndef DATASTRUCT_ARRQUEUE_H
 #define DATASTRUCT_ARRQUEUE_H
 
+#include "stdexcept"
+
 template<typename T>
 class arrQueue {
 private:
@@ -38,7 +40,10 @@ public:
     }
 
     T *back() {
-        return &mainArr_[0];
+        if (size_ == 0){
+            throw std::logic_error("Size is 0");
+        }
+        return &mainArr_[size_ - 1];
     }
 
     bool empty() {
@@ -46,10 +51,16 @@ public:
     }
 
     T *front() {
-        return &mainArr_[size_ - 1];
+        if (size_ == 0){
+            throw std::logic_error("Size is 0");
+        }
+        return &mainArr_[0];
     }
 
     void pop() {
+        if (size_ == 0){
+            throw std::logic_error("You cannot pop when size is 0");
+        }
         size_--;
         resize(false);
     }

@@ -21,6 +21,9 @@ public:
     }
 
     T *back() {
+        if (size_ == 0){
+            throw std::logic_error("Size is 0");
+        }
         return &mainArr_[size_ - 1];
     }
 
@@ -29,6 +32,9 @@ public:
     }
 
     T *front() {
+        if (size_ == 0){
+            throw std::logic_error("Size is 0");
+        }
         return &mainArr_[0];
     }
 
@@ -104,6 +110,9 @@ public:
     }
 
     void pop_back() {
+        if (size_ == 0){
+            throw std::logic_error("You cannot pop when size is 0");
+        }
         T tempArr[--size_];
         for (int i = 0; i < size_; ++i) {
             tempArr[i] = mainArr_[i];
