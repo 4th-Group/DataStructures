@@ -10,19 +10,20 @@ private:
     int size_ = 0;
 
     void resize(bool bigger) {
-        int  i;
+        int  i = 0;
         if  (bigger && size_ == 1){
             delete[] mainArr_;
             mainArr_ = new T[1];
             return;
         }
         T* newArr = new T[size_];
-        for (i = bigger; i < size_; ++i) {
-            newArr[i] = mainArr_[i - bigger];
+        for (; i < size_ - bigger; ++i) {
+            newArr[i] = mainArr_[i];
         }
         delete[] mainArr_;
         mainArr_ = new T[size_];
-        for (i = bigger; i < size_; ++i) {
+        i = 0;
+        for (; i < size_ - bigger; ++i) {
             mainArr_[i] = newArr[i];
         }
         delete[] newArr;
@@ -69,7 +70,7 @@ public:
     void push(T &val) {
         size_++;
         resize(true);
-        mainArr_[0] = val;
+        mainArr_[size_ - 1] = val;
     }
 
     int size() {
