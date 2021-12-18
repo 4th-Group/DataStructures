@@ -1,7 +1,7 @@
 #ifndef DATASTRUCT_LISTONARRAY_H
 #define DATASTRUCT_LISTONARRAY_H
 
-
+template<typename T>
 class ListOnArr {
 private:
     T *mainArr_ = new T[0];
@@ -105,7 +105,43 @@ public:
         delete[] arr2;
     }
 
+    void push_front(T &val) {
+        size_++;
+        T* arr = new T[size_];
+        for (int i = 1; i < size_; ++i) {
+            arr[i] = mainArr_[i - 1];
+        }
+        arr[0] = val;
+        delete[] mainArr_;
+        mainArr_ = new T[size_];
+        for (int i = 0; i < size_; ++i) {
+            mainArr_[i] = arr[i];
+        }
+        delete[] arr;
+    }
+
+    void pop_front() {
+        if (size_ == 0){
+            throw std::logic_error("size of the deque is 0");
+        }
+        size_--;
+        T* arr = new T[size_];
+        for (int i = 0; i < size_; ++i) {
+            arr[i] = mainArr_[i + 1];
+        }
+
+        delete[] mainArr_;
+        mainArr_ = new T[size_];
+        for (int i = 0; i < size_; ++i) {
+            mainArr_[i] = arr[i];
+        }
+        delete[] arr;
+    }
+
     void pop_back() {
+        if (size_ == 0){
+            throw std::logic_error("size of the deque is 0");
+        }
         T* tempArr = new T[--size_];
         for (int i = 0; i < size_; ++i) {
             tempArr[i] = mainArr_[i];

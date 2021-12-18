@@ -1,5 +1,5 @@
-#ifndef GOOGLE_TESTS_STACK_H
-#define GOOGLE_TESTS_STACK_H
+#ifndef DATASTRUCT_STACKONARRAY_H
+#define DATASTRUCT_STACKONARRAY_H
 
 
 #include <ostream>
@@ -15,7 +15,7 @@ public:
 
     StackOnArray(StackOnArray &old){
         delete[] stackBase;
-        stackBase  = new T[old.getSize()]
+        stackBase  = new T[old.getSize()];
         for (int i = 0; i < old.getSize(); ++i) {
             stackBase[i] = old.stackBase[i];
         }
@@ -44,15 +44,15 @@ public:
         return *this;
     }
 
-    friend bool operator<(StackOnArray<T> &stack, Stack<T> &stack1){
+    friend bool operator<(StackOnArray<T> &stack, StackOnArray<T> &stack1){
         return (stack.size < stack1.size);
     }
 
-    friend bool operator>(StackOnArray<T> &stack, Stack<T> &stack1) {
+    friend bool operator>(StackOnArray<T> &stack, StackOnArray<T> &stack1) {
         return (stack.size > stack1.size);
     }
 
-    friend bool operator==(StackOnArray<T> &stack, Stack<T> &stack1) {
+    friend bool operator==(StackOnArray<T> &stack, StackOnArray<T> &stack1) {
         return (stack.size == stack1.size);
     }
 
@@ -71,14 +71,14 @@ public:
     }
 
     T *top() {
-        if (size_ == 0){
+        if (size == 0){
             throw std::logic_error("size of the stack is 0");
         }
         return &stackBase[size - 1];
     }
 
     T *pop() {
-        if (size_ == 0){
+        if (size == 0){
             throw std::logic_error("size of the stack is 0");
         }
         --size;
@@ -137,4 +137,4 @@ public:
 };
 
 
-#endif //GOOGLE_TESTS_STACK_H
+#endif //DATASTRUCT_STACKONARRAY_H
